@@ -27,10 +27,11 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami",function(req,res){
-  //add middleware for whoami
+  
   var language = req.get('Accept-Language');
   var software = req.get('User-Agent');
-  var ipaddress = req.connection.remoteAddress;
+  app.enable("trust proxy");
+  var ipaddress = req.ip;
 
   res.json({"ipaddress":ipaddress,"language":language,"software":software});
 });
